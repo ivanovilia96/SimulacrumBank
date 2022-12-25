@@ -1,4 +1,4 @@
-1 - Client (fio varchar(50), age tinyint, mail varchar(50) PK  )
+1 - Client (fio varchar(50), age smallint, mail varchar(50) PK  )
 
 2 - ClientCashAccountLink (mail varchar(50) FK to Client(mail), id FK to CashAccount(id)  )
 
