@@ -1,4 +1,6 @@
-package data_base
+package bisenes_logic
+
+//todo то есть это адаптер-прослойка из слоя "сущьности" в "бизнес логику"
 
 //type Bank interface {
 //	Client
@@ -10,7 +12,7 @@ type ClientActions interface {
 	Add(mail, fio string, age int8) error    // добавляем ( регистрируем ) клиента в банке
 	Delete(mail string) error                // удаляем клиента и его банковские счета, вернуть ошибку если хоть на 1 банковском счете есть деньги
 	Update(mail, fio string, age int8) error // позволяем изменить у клиента информацию если такой (маил) еще не существует в банке
-	Get(mail string) (Client, error)
+	Get(mail string) (*Client, error)
 }
 
 // описывает действия которые мы можем сделать с банковским аккаунтом клиента
@@ -18,7 +20,7 @@ type BankAccountActions interface {
 	Create(mail, currency string) (int, error) // создаем аккаунт для клиента в нужной валюте, возвращает айди
 	Delete(id int) error                       // удаляем по id
 	AddMoney(id int, count float64) error      // добавляем деньги на счет с определенным номером
-	Get(id int) (BankAccount, error)           // получаем информацию по номеру счета
+	Get(id int) (*BankAccount, error)          // получаем информацию по номеру счета
 	GetAll(mail string) ([]BankAccount, error) // получаем информацию о всех счетах для 1 пользователя банка
 }
 
