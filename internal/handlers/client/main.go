@@ -1,7 +1,10 @@
 package client
 
+//todo эту часть я считаю "бизнес логикой"
+
 import (
 	"github.com/gin-gonic/gin"
+	"io"
 	"simulacrumBank/internal/adapters/bisenes_logic"
 )
 
@@ -16,7 +19,17 @@ type Handlers struct {
 }
 
 func (h Handlers) Add(c *gin.Context) {
-	h.Actions.Add()
+	var client Client
+	err := c.BindJSON(&client)
+	if err != nil {
+		println("BindJSON err", err.Error())
+		c.JSON(666, `err`)
+	}
+	err := h.Actions.Add()
+	if err != nil {
+		println("h.Actions.Add err", err.Error())
+		c.JSON(666, `err`)
+	}
 }
 
 type HandlersList interface {
