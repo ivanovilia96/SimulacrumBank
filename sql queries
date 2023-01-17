@@ -1,0 +1,2 @@
+CREATE DATABASE bank;
+\c bank ( переключиться с текущей бд на банк бд )

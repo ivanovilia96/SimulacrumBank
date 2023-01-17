@@ -12,5 +12,6 @@ func InitClientRouters(e *gin.Engine, dbActions data_base.DataBaseActions) {
 	// получается gin такой же фуфил внешний как и бд, его нужно вынести и подумать над этим
 	clientHandlers := client_handlers.NewHandlers(client_actions.NewActions(dbActions))
 
-	e.POST("/client/add", clientHandlers.Add)
+	client := e.Group("/client")
+	client.POST("/add", clientHandlers.Add)
 }

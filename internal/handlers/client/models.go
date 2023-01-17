@@ -1,7 +1,7 @@
 package client
 
 type Client struct {
-	mail string
-	fio  string
-	age  int8
+	Mail string `json:"mail"`
+	Fio  string `json:"fio"`
+	Age  int8   `json:"age"`
 }

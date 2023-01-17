@@ -1,7 +1,6 @@
 package client
 
 import (
-	"fmt"
 	"simulacrumBank/internal/adapters/bisenes_logic"
 	"simulacrumBank/internal/adapters/data_base"
 )
@@ -18,7 +17,11 @@ type Client struct {
 }
 
 func (c Client) Add(mail, fio string, age int8) error {
-	fmt.Print("action Client.Add called", mail, fio, age)
+	_, err := c.db.Exec("insert into client (fio, age, mail) values ($1, $2, $3)", fio, age, mail)
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
