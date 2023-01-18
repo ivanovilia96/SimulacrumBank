@@ -1,4 +1,4 @@
-/client/add
+POST /client/add
 {
     "mail":"iivanov@mail.ru",
 	"fio":"III",
@@ -6,8 +6,13 @@
  }
 
  -----------------
-/client/delete
+POST /client/delete
 
 {
     "mail":"iivanov@mail.ru"
  }
+ ------
+GET /client/get/iivanov@mail.ru
+ res: {"Mail":"iivanov@mail.ru","FIO":"III","Age":26}
+ --------
+ POST /client/get/iivanov@mail.ru

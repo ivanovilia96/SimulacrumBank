@@ -7,7 +7,6 @@ import (
 )
 
 func (h Handlers) Add(c *gin.Context) {
-	println("alling Add")
 	var client Client
 	err := c.BindJSON(&client)
 	if err != nil {

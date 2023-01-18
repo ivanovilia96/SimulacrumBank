@@ -9,9 +9,9 @@ package bisenes_logic
 
 // сущьность описывающая действия которые мы можем сделать с клиентом банка
 type ClientActions interface {
-	Add(mail, fio string, age int8) error    // добавляем ( регистрируем ) клиента в банке
-	Delete(mail string) error                // удаляем клиента и его банковские счета, вернуть ошибку если хоть на 1 банковском счете есть деньги
-	Update(mail, fio string, age int8) error // позволяем изменить у клиента информацию если такой (маил) еще не существует в банке
+	Add(mail, fio string, age int8) error                          // добавляем ( регистрируем ) клиента в банке
+	Delete(mail string) error                                      // удаляем клиента и его банковские счета, вернуть ошибку если хоть на 1 банковском счете есть деньги
+	Update(currentMail, newMail, newFio string, newAge int8) error // позволяем изменить у клиента информацию если такой (маил) еще не существует в банке
 	Get(mail string) (*Client, error)
 }
 

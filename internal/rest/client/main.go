@@ -15,5 +15,6 @@ func InitClientRouters(e *gin.Engine, dbActions data_base.DataBaseActions) {
 	client := e.Group("/client")
 	client.POST("/add", clientHandlers.Add)
 	client.POST("/delete", clientHandlers.Delete)
-	client.POST("/get", clientHandlers.Get)
+	client.POST("/update/:mail", clientHandlers.Update)
+	client.GET("/get/:mail", clientHandlers.Get)
 }
