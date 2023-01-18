@@ -14,5 +14,10 @@ POST /client/delete
  ------
 GET /client/get/iivanov@mail.ru
  res: {"Mail":"iivanov@mail.ru","FIO":"III","Age":26}
- --------
- POST /client/get/iivanov@mail.ru
+--------
+ POST /client/update/iivanov@mail.ru
+ {
+     "mail":"iivanov@mail.ru",
+ 	"fio":"III",
+ 	"age":26
+  }
