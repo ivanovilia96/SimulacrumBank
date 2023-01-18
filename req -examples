@@ -1,0 +1,13 @@
+/client/add
+{
+    "mail":"iivanov@mail.ru",
+	"fio":"III",
+	"age":26
+ }
+
+ -----------------
+/client/delete
+
+{
+    "mail":"iivanov@mail.ru"
+ }

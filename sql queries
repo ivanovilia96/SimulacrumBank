@@ -1,2 +1,5 @@
 CREATE DATABASE bank;
 \c bank ( переключиться с текущей бд на банк бд )
+CREATE TABLE client (fio varchar(50) NOT NULL, age smallint, mail varchar(50) PRIMARY KEY, CONSTRAINT age_eighteen check (age>=18));
+CREATE TABLE cashAccount(id serial PRIMARY KEY , currency varchar(3), count NUMERIC(2));
+CREATE TABLE ClientCashAccountLink (mail varchar(50) REFERENCES client(mail),id int REFERENCES cashAccount(id));

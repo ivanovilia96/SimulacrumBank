@@ -1,6 +1,8 @@
 package client
 
 import (
+	"fmt"
+
 	"simulacrumBank/internal/adapters/bisenes_logic"
 	"simulacrumBank/internal/adapters/data_base"
 )
@@ -17,7 +19,7 @@ type Client struct {
 }
 
 func (c Client) Add(mail, fio string, age int8) error {
-	_, err := c.db.Exec("insert into client (fio, age, mail) values ($1, $2, $3)", fio, age, mail)
+	_, err := c.db.Exec("INSERT INTO client (fio, age, mail) VALUES ($1, $2, $3);", fio, age, mail)
 	if err != nil {
 		return err
 	}
@@ -25,7 +27,20 @@ func (c Client) Add(mail, fio string, age int8) error {
 	return nil
 }
 
+// Delete - delete client with mail (PK)
 func (c Client) Delete(mail string) error {
+	result, err := c.db.Exec("DELETE FROM client WHERE mail=$1;", mail)
+	if err != nil {
+		return err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return err
+	}
+
+	fmt.Printf("deleted %d rows", rowsAffected)
+
 	return nil
 }
 
@@ -34,5 +49,13 @@ func (c Client) Update(mail string, fio string, age int8) error {
 }
 
 func (c Client) Get(mail string) (*bisenes_logic.Client, error) {
-	return nil, nil
+	var client bisenes_logic.Client
+
+	rows := c.db.QueryRow("SELECT mail, fio, age FROM client WHERE mail = $1", mail)
+	err := rows.Scan(&client.Mail, &client.FIO, &client.Age)
+	if err != nil {
+		return nil, err
+	}
+
+	return &client, nil
 }

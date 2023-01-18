@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
+
 	db_adapter "simulacrumBank/internal/adapters/data_base"
 	db "simulacrumBank/internal/data_base"
 	"simulacrumBank/internal/rest"
