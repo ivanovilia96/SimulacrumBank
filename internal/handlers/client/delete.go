@@ -1,25 +1,25 @@
 package client
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
+	"net/http"
+	"simulacrumBank/internal/actions/client"
 )
 
 func (h Handlers) Delete(c *gin.Context) {
-	var client Client
-	err := c.BindJSON(&client)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, err.Error())
-		return
-	}
+	mail := c.Param("mail")
 
-	err = h.Actions.Delete(client.Mail)
+	err := h.Actions.Delete(mail)
 	if err != nil {
+		if err == client.ErrorNoDeletedRows {
+			c.JSON(http.StatusNotFound, err.Error()+"email is: "+mail)
+			return
+		}
+
 		c.JSON(666, err.Error())
 		return
 	}
 
-	println("delete client with mail", client.Mail, "success")
-	c.JSON(200, "email deleted:"+client.Mail)
+	println("delete client with mail", mail, "success")
+	c.JSON(200, "email deleted:"+mail)
 }

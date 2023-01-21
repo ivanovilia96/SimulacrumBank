@@ -1,6 +1,8 @@
 package client
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // Delete - delete client with mail (PK)
 func (c Client) Delete(mail string) error {
@@ -15,6 +17,9 @@ func (c Client) Delete(mail string) error {
 	}
 
 	fmt.Printf("deleted %d rows", rowsAffected)
+	if rowsAffected == 0 {
+		return ErrorNoDeletedRows
+	}
 
 	return nil
 }
