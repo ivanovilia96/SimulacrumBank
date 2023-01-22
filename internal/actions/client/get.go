@@ -1,6 +1,8 @@
 package client
 
-import "simulacrumBank/internal/adapters/bisenes_logic"
+import (
+	"simulacrumBank/internal/adapters/bisenes_logic"
+)
 
 func (c Client) Get(mail string) (*bisenes_logic.Client, error) {
 	var client bisenes_logic.Client

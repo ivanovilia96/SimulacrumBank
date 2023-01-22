@@ -16,7 +16,7 @@ type ClientActions interface {
 }
 
 // описывает действия которые мы можем сделать с банковским аккаунтом клиента
-type BankAccountActions interface {
+type CashAccountActions interface {
 	Create(mail, currency string) (int, error) // создаем аккаунт для клиента в нужной валюте, возвращает айди
 	Delete(id int) error                       // удаляем по id
 	AddMoney(id int, count float64) error      // добавляем деньги на счет с определенным номером
