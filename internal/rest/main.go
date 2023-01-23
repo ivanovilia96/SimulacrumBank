@@ -27,7 +27,7 @@ func InitRouters(e *gin.Engine, dbActions data_base.DataBaseActions) {
 	cashAccountHandlers := cash_account_handlers.NewHandlers(cash_account_actions.NewActions(dbActions, clientActions))
 
 	cashAccount := e.Group("/cash_account")
-	cashAccount.POST("/add", cashAccountHandlers.Create)
+	cashAccount.POST("/create", cashAccountHandlers.Create)
 }
 
 func initCommonRouters(e *gin.Engine) {

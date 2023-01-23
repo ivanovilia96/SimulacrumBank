@@ -6,7 +6,6 @@ import (
 
 // Delete - delete client with mail (PK)
 func (c Client) Delete(mail string) error {
-	добавить что бы при удалении клиента все его счета удалялись ( каскадное удаление )
 	result, err := c.db.Exec("DELETE FROM client WHERE mail=$1;", mail)
 	if err != nil {
 		return err

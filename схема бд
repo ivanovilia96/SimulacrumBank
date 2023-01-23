@@ -1,8 +1,10 @@
 1 - Client (fio varchar(50), age smallint, mail varchar(50) PK  )
 
-2 - ClientCashAccountLink (mail varchar(50) FK to Client(mail), id FK to CashAccount(id)  )
+2 - ClientCashAccountLink (mail varchar(50) FK to Client(mail) on delete cascade, on update cascade,
+ cash_account_id PK serial  )
 
 (USD,RUB currency example)
-3 - CashAccount(id PK, currency varchar(3), count NUMERIC(2) )
+3 - CashAccount(id fk to ClientCashAccountLink(cash_account_id) on delete cascade, on update cascade,
+ currency varchar(3), count NUMERIC(2) )
 
 ---- для начала это, потом тут понатыкать чат между клиентами

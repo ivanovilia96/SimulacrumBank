@@ -18,6 +18,7 @@ func (h Handlers) Create(c *gin.Context) {
 	id, err := h.Actions.Create(d.Mail, d.Currency)
 	if err != nil {
 		if err == sql.ErrNoRows {
+			println("sqlNo rows")
 			c.JSON(http.StatusNotFound, "client with this mail not found "+d.Mail)
 			return
 		}

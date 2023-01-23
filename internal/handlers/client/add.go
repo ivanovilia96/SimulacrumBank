@@ -18,7 +18,7 @@ func (h Handlers) Add(c *gin.Context) {
 	err = h.Actions.Add(client.Mail, client.Fio, client.Age)
 	if err != nil {
 		println("h.Actions.Add err", err.Error())
-		c.JSON(666, `err`)
+		c.JSON(666, err.Error())
 		return
 	}
 

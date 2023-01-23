@@ -7,14 +7,13 @@ func (b CashAccount) Create(mail, currency string) (int, error) {
 	}
 
 	lastInsertId := 0
-	err = b.db.
-		QueryRow("INSERT INTO cashaccount (currency) VALUES ($1) RETURNING id", currency).
-		Scan(&lastInsertId)
+	err = b.db.QueryRow("INSERT INTO clientcashaccountlink(mail) VALUES ($1) RETURNING cash_account_id", mail).Scan(&lastInsertId)
 	if err != nil {
 		return 0, err
 	}
 
-	_, err = b.db.Exec("INSERT INTO clientcashaccountlink(mail, id) VALUES ($1, $2)", mail, lastInsertId)
+	_, err = b.db.
+		Query("INSERT INTO cashaccount (id,currency) VALUES ($1,$2)", lastInsertId, currency)
 	if err != nil {
 		return 0, err
 	}
